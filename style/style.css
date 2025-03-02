@@ -143,4 +143,139 @@ img {
 
 * {
   font-family: "Noto Sans HK", sans-serif;
+}
+
+body {
+  background-color: #F4F4F4;
+}
+
+.search-container {
+  width: 100%;
+  height: 30vh;
+  background-image: url("../images/search-img.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.search-container .content {
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.content h1 {
+  color: #FFF;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-align: center;
+}
+.content h4 {
+  color: #FFF;
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-align: center;
+}
+.content .search-box {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 40px;
+  margin-top: 20px;
+}
+
+.search-box input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  padding: 0 25px 0 45px;
+  font-size: 1.125rem;
+  border-radius: 5px;
+}
+.search-box i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #AAA;
+  font-size: 1.25rem;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery .images {
+  max-width: 95%;
+  gap: 15px;
+  margin-top: 40px;
+  -moz-columns: 5 350px;
+       columns: 5 350px;
+}
+
+.images .card {
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+.images .card:hover .details {
+  bottom: 1px;
+  pointer-events: auto;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 5px;
+}
+.card .details {
+  position: absolute;
+  width: 100%;
+  padding: 15px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5215686275), transparent);
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  transition: all 0.15s ease-in-out;
+  bottom: -100px;
+  pointer-events: none;
+}
+
+.details .author {
+  align-self: center;
+  font-size: 1rem;
+  color: #FFF;
+  gap: 8px;
+}
+.details button {
+  cursor: pointer;
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+  background-color: #A57A65;
+  font-size: 1rem;
+  padding: 1.5px 8px;
+}
+
+.gallery .load-more {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #FFF;
+  background-color: #B78A73;
+  padding: 8px 25px;
+  border: none;
+  border-radius: 5px;
+  margin: 30px 0 20px;
+  transition: background-color 0.15s ease-in-out;
+}
+.gallery .load-more:hover {
+  background-color: #A57A65;
 }/*# sourceMappingURL=style.css.map */
