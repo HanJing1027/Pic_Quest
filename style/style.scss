@@ -90,6 +90,7 @@ body {
 
 .images {
   .card {
+    cursor       : pointer;
     position     : relative;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -159,5 +160,90 @@ body {
     &:hover {
       background-color: #A57A65;
     }
+  }
+}
+
+.lightbox {
+  position        : fixed;
+  z-index         : 100;
+  width           : 100%;
+  height          : 100%;
+  background-color: #000000A6;
+}
+
+.lightbox {
+  .wrapper {
+    width           : 100%;
+    max-width       : 850px;
+    position        : absolute;
+    top             : 50%;
+    left            : 50%;
+    transform       : translate(-50%, -50%);
+    background-color: #F4F4F4;
+    border-radius   : 10px;
+    padding         : 20px;
+  }
+}
+
+.wrapper {
+  .lightbox-header {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+  }
+}
+
+.lightbox-header {
+  .author {
+    color    : #333;
+    font-size: 1.25rem;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .buttons {
+    i {
+      cursor       : pointer;
+      width        : 40px;
+      height       : 40px;
+      text-align   : center;
+      line-height  : 40px;
+      color        : #FFF;
+      font-size    : 1.125rem;
+      border-radius: 4px;
+    }
+
+    .bx-download {
+      background-color: #A57A65;
+    }
+
+    .bx-x {
+      margin-left     : 10px;
+      background-color: #AAA;
+    }
+  }
+}
+
+.wrapper {
+  .preview-img {
+    margin-top     : 20px;
+    display        : flex;
+    justify-content: center;
+
+    .img {
+      max-width : 90vw;
+      max-height: 65vh;
+    }
+  }
+}
+
+
+.img {
+  img {
+    width     : 100%;
+    height    : 100%;
+    object-fit: contain;
   }
 }
