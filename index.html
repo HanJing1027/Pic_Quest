@@ -38,7 +38,11 @@
 
         <div class="preview-img">
           <div class="img">
-            <img src="images/img-1.jpg" alt="preview-img" />
+            <img
+              class="lightbox-img"
+              src="images/img-1.jpg"
+              alt="preview-img"
+            />
           </div>
         </div>
       </div>
@@ -59,7 +63,7 @@
       <ul class="images">
         <!-- 01 -->
         <li class="card">
-          <img src="images/img-1.jpg" alt="img" />
+          <img class="photo" src="images/img-1.jpg" alt="img" />
           <div class="details">
             <div class="author">
               <i class="bx bxs-camera-home"></i>
@@ -72,6 +76,8 @@
       <button class="load-more">載入更多</button>
     </section>
     <!-- js -->
+    <script src="node_modules/masonry-layout/dist/masonry.pkgd.min.js"></script>
+    <script src="node_modules/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script type="module" src="js/app.js"></script>
   </body>
 </html>

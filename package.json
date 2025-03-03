@@ -1,0 +1,24 @@
+{
+  "name": "pic_quest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HanJing1027/Pic_Quest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HanJing1027/Pic_Quest/issues"
+  },
+  "homepage": "https://github.com/HanJing1027/Pic_Quest#readme",
+  "description": "",
+  "dependencies": {
+    "imagesloaded": "^5.0.0",
+    "masonry-layout": "^4.2.2"
+  }
+}

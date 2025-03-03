@@ -213,27 +213,39 @@ body {
 }
 
 .gallery .images {
-  max-width: 95%;
-  gap: 15px;
+  width: 100%;
+  max-width: 1800px;
   margin-top: 40px;
-  -moz-columns: 5 350px;
-       columns: 5 350px;
 }
 
 .images .card {
+  width: 350px;
   cursor: pointer;
   position: relative;
   border-radius: 5px;
   margin-bottom: 15px;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.images .card:first-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+.images .card.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 .images .card:hover .details {
   bottom: 1px;
   pointer-events: auto;
 }
 
-.card img {
+.card .photo {
+  display: block;
   width: 100%;
+  height: auto;
   border-radius: 5px;
 }
 .card .details {
@@ -295,9 +307,6 @@ body {
   pointer-events: auto;
   opacity: 1;
 }
-.lightbox.show .wrapper {
-  transform: scale(1);
-}
 
 .lightbox .wrapper {
   width: 100%;
@@ -309,8 +318,6 @@ body {
   background-color: #F4F4F4;
   border-radius: 10px;
   padding: 20px;
-  transition: all 0.15s ease-in-out;
-  transform: scale(0.5);
 }
 
 .wrapper .lightbox-header {
@@ -354,7 +361,7 @@ body {
   max-height: 65vh;
 }
 
-.img img {
+.img .lightbox-img {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
