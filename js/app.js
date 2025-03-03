@@ -40,7 +40,7 @@ const generateImgs = async () => {
   }
 };
 
-const createImgsCard = (photos) => {
+const createImgsCard = async (photos) => {
   const fragments = document.createDocumentFragment();
   const newItems = []; // 存儲新的卡片
 
@@ -67,43 +67,35 @@ const createImgsCard = (photos) => {
 
   imagesContainer.appendChild(fragments);
 
-  // 等待所有圖片載入完成後再佈局
-  const imgLoadPromises = newItems.map((item) => {
-    return new Promise((resolve) => {
+  // 先等待所有圖片載入完成
+  await Promise.all(
+    newItems.map(async (item) => {
       const img = item.querySelector("img");
-      if (img.complete) {
-        resolve();
-      } else {
-        img.onload = () => resolve();
-        img.onerror = () => resolve(); // 錯誤時也解析 promise
+      if (!img.complete) {
+        // 如果圖像尚未加載完成，則等待載入
+        await new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve; //  錯誤也解析
+        });
       }
-    });
-  });
+    })
+  );
 
-  // 當所有圖片都載入完成後，重新佈局
-  Promise.all(imgLoadPromises).then(() => {
-    if (masonry) {
-      masonry.appended(newItems); // 使用 appended 方法而非 reloadItems
-      masonry.layout();
+  // 如果Masonry已經初始化，則添加新的卡片
+  if (masonry) {
+    masonry.appended(newItems); // 添加新的卡片
+    masonry.layout(); // 重新佈局
 
-      setTimeout(() => {
-        newItems.forEach((item) => {
-          item.classList.add("show");
-        }, 50);
-      }, 500);
-    } else {
-      initMasonry();
+    newItems.forEach((item) => item.classList.add("show"));
+  } else {
+    initMasonry(); // 初始化Masonry
 
-      setTimeout(() => {
-        newItems.forEach((item) => {
-          item.classList.add("show");
-        }, 50);
-      }, 500);
-    }
-  });
+    newItems.forEach((item) => item.classList.add("show"));
+  }
 };
 
 const searchImgs = async () => {
+  // < ====================== coding here 1.獲取user輸入的值 2.清空當前的圖片 3.發送請求 4.創建新的圖片卡片 ====================== >
   //
 };
 
