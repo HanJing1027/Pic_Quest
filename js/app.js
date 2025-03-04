@@ -256,5 +256,5 @@ const loadMoreImgs = () => {
 loadMooreBtn.addEventListener("click", loadMoreImgs);
 
 document.addEventListener("DOMContentLoaded", () => {
-  // generateImgs();
+  generateImgs();
 });
