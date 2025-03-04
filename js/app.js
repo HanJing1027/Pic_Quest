@@ -101,7 +101,6 @@ const createImgsCard = async (photos) => {
 
 const searchImgs = async () => {
   const userSearchText = searchInput.value.trim();
-  if (!userSearchText) return;
 
   isSearching = true;
 
@@ -220,7 +219,13 @@ searchInput.addEventListener("compositionend", () => {
 });
 searchInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !isComposing) {
-    searchImgs();
+    if (searchInput.value.trim() === "") {
+      isSearching = false;
+      imagesContainer.innerHTML = "";
+      generateImgs();
+    } else {
+      searchImgs();
+    }
   }
 });
 
