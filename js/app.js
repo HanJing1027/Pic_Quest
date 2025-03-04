@@ -5,6 +5,7 @@ const imagesContainer = document.querySelector(".gallery .images");
 const loadMooreBtn = document.querySelector(".load-more");
 
 let masonry; // 存儲Masonry
+let isSearching = false; // 是否正在搜索
 
 const perPage = 15;
 let currentPage = 1;
@@ -95,8 +96,45 @@ const createImgsCard = async (photos) => {
 };
 
 const searchImgs = async () => {
-  // < ====================== coding here 1.獲取user輸入的值 2.清空當前的圖片 3.發送請求 4.創建新的圖片卡片 ====================== >
-  //
+  const userSearchText = searchInput.value.trim();
+  if (!userSearchText) return;
+
+  isSearching = true;
+
+  // 儲存搜尋詞，以便loadMore使用
+  searchInput.setAttribute("data-last-search", userSearchText);
+
+  currentPage = 1; // 重置頁碼
+
+  await loadSearchResults(userSearchText, currentPage, true);
+
+  searchInput.value = "";
+};
+
+const loadSearchResults = async (
+  query,
+  currentPage,
+  shouldClearContainer = true
+) => {
+  try {
+    const SEARCH_API_URL = `https://api.pexels.com/v1/search?query=${query}&page=${currentPage}&per_page=${perPage}`;
+
+    const options = {
+      headers: { Authorization: API_KEY },
+    };
+
+    const response = await fetch(SEARCH_API_URL, options);
+    const searchData = await response.json();
+
+    if (shouldClearContainer) {
+      imagesContainer.innerHTML = ``;
+      masonry = null; // 重置masonry 因為清空了容器
+    }
+
+    createImgsCard(searchData.photos);
+  } catch (err) {
+    console.error(`搜尋圖片時出錯:${err}`);
+  }
 };
 
 const saveImg = async (imageUrl) => {
@@ -164,16 +202,29 @@ const createLightbox = (lightbox, imgSrc, photographer, downloadUrl) => {
   });
 };
 
+// 檢查是否使用中文輸入法
+let isComposing = false;
+searchInput.addEventListener("compositionstart", () => {
+  isComposing = true;
+});
+searchInput.addEventListener("compositionend", () => {
+  isComposing = false;
+});
 searchInput.addEventListener("keydown", (e) => {
-  if (searchInput.value.trim() === "") return;
-  if (e.key === "Enter") {
+  if (e.key === "Enter" && !isComposing) {
     searchImgs();
   }
 });
 
 const loadMoreImgs = () => {
   currentPage++;
-  generateImgs();
+  // 如果正在搜索，則執行搜索功能
+  if (isSearching) {
+    const userSearchText = searchInput.getAttribute("data-last-search");
+    loadSearchResults(userSearchText, currentPage, false);
+  } else {
+    generateImgs();
+  }
 };
 
 loadMooreBtn.addEventListener("click", loadMoreImgs);
