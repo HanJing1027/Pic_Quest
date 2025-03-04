@@ -62,7 +62,7 @@
     <section class="gallery">
       <ul class="images">
         <!-- 01 -->
-        <li class="card">
+        <!-- <li class="card">
           <img class="photo" src="images/img-1.jpg" alt="img" />
           <div class="details">
             <div class="author">
@@ -71,9 +71,14 @@
             </div>
             <button><i class="bx bx-download"></i></button>
           </div>
-        </li>
+        </li> -->
       </ul>
-      <button class="load-more">載入更多</button>
+      <button class="load-more">
+        <span class="normal-text">載入更多</span>
+        <span class="loading-text" style="display: none">
+          <i class="bx bx-loader-alt bx-spin"></i> 載入中...
+        </span>
+      </button>
     </section>
     <!-- js -->
     <script src="node_modules/masonry-layout/dist/masonry.pkgd.min.js"></script>

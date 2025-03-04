@@ -292,6 +292,26 @@ body {
 .gallery .load-more:hover {
   background-color: #A57A65;
 }
+.gallery .load-more:disabled {
+  background: #f0b1a0;
+}
+.gallery .load-more .loading-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.gallery .load-more .loading-text .bx-spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .lightbox {
   position: fixed;

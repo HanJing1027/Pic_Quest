@@ -24,6 +24,8 @@ const initMasonry = () => {
 
 const generateImgs = async () => {
   try {
+    setLoadingState(true);
+
     const API_URL = `https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`;
 
     const options = {
@@ -38,6 +40,8 @@ const generateImgs = async () => {
     createImgsCard(data.photos);
   } catch (err) {
     console.error(err);
+  } finally {
+    setLoadingState(false);
   }
 };
 
@@ -116,6 +120,8 @@ const loadSearchResults = async (
   currentPage,
   shouldClearContainer = true
 ) => {
+  setLoadingState(true);
+
   try {
     const SEARCH_API_URL = `https://api.pexels.com/v1/search?query=${query}&page=${currentPage}&per_page=${perPage}`;
 
@@ -134,6 +140,8 @@ const loadSearchResults = async (
     createImgsCard(searchData.photos);
   } catch (err) {
     console.error(`搜尋圖片時出錯:${err}`);
+  } finally {
+    setLoadingState(false);
   }
 };
 
@@ -215,6 +223,24 @@ searchInput.addEventListener("keydown", (e) => {
     searchImgs();
   }
 });
+
+// 按鈕顯示載入狀態
+const setLoadingState = (isLoading) => {
+  const normalText = loadMooreBtn.querySelector(".normal-text") || loadMooreBtn;
+  const loadingText = loadMooreBtn.querySelector(".loading-text");
+
+  if (isLoading) {
+    loadMooreBtn.disabled = true;
+
+    loadingText.style.display = "flex";
+    normalText.style.display = "none";
+  } else {
+    loadMooreBtn.disabled = false;
+
+    loadingText.style.display = "none";
+    normalText.style.display = "block";
+  }
+};
 
 const loadMoreImgs = () => {
   currentPage++;
