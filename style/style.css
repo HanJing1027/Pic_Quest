@@ -152,9 +152,7 @@ body {
 .search-container {
   width: 100%;
   height: 30vh;
-  background-image: url("../images/search-img.jpg");
-  background-size: cover;
-  background-position: center;
+  background-color: tan;
 }
 .search-container .content {
   width: 100%;
