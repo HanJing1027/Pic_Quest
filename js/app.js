@@ -1,4 +1,5 @@
-import { API_KEY } from "./config.js";
+// import { API_KEY } from "./config.js";
+const API_KEY = window.API_KEY;
 
 const searchInput = document.querySelector(".search-box input");
 const imagesContainer = document.querySelector(".gallery .images");
