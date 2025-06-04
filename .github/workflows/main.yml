@@ -4,21 +4,31 @@ on:
   push:
     branches: [master]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create config file
+      - name: Create config file with secrets
         run: |
-          echo "window.PEXELS_API_KEY = '${{ secrets.API_KEY }}';" > js/config.js
+          mkdir -p js
+          cat > js/config.js << 'EOF'
+          // Pexels API 配置
+          window.PEXELS_API_KEY = '${{ secrets.API_KEY }}';
+          EOF
+
+      - name: Verify config file (Debug)
+        run: |
+          echo "Generated config.js content:"
+          cat js/config.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -26,7 +36,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."
+          path: ./
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
