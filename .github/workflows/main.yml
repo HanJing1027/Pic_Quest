@@ -22,7 +22,7 @@ jobs:
           mkdir -p js
           cat > js/config.js << 'EOF'
           // Pexels API 配置
-          window.PEXELS_API_KEY = '${{ secrets.API_KEY }}';
+          export const API_KEY = `${{ secrets.API_KEY }}`;
           EOF
 
       - name: Verify config file (Debug)
