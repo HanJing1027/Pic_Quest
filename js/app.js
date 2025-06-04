@@ -1,4 +1,3 @@
-// import { API_KEY } from "./config.js";
 const API_KEY = window.API_KEY;
 
 const searchInput = document.querySelector(".search-box input");
